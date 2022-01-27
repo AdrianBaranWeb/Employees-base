@@ -1,27 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {updateData} from '../../../actions';
 
 import FilterBar from '../../FilterBar/FilterBar';
 import EmployeeCard from '../../EmployeeCard/EmployeeCard';
 
 import {Container} from '@mui/material';
 
-const Home = () => {
-  const [employees, setEmployees] = useState(null)
+const Home = ({data, updateData}) => {
+	useEffect(() => {
+		fetch('http://localhost:8000/employees')
+			.then((e) => e.json())
+			.then((data) => updateData(data))
+			.catch((err) => new Error(err.message));
+	}, [updateData]);
 
-  useEffect(() => {
-    fetch('http://localhost:8000/employees').then(e => e.json()).then(data => setEmployees(data)).catch(err => new Error(err.message))
-  }, [])
-
-  const employeeCardElements = employees && employees.map(item => (
-    <EmployeeCard key={item.id} {...item}/>
-  ))
+	const employeeCardElements =
+		data && data.map((item) => <EmployeeCard key={item.id} {...item} />);
 
 	return (
 		<Container maxWidth='xl'>
 			<FilterBar />
-      {employeeCardElements}
+			{employeeCardElements}
 		</Container>
 	);
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+	return {data: state.data.employeeList};
+};
+
+export default connect(mapStateToProps, {updateData})(Home);
