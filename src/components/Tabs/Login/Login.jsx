@@ -17,7 +17,7 @@ const Login = () => {
 		<Container maxWidth='xs' className='login__wrapper'>
 			<Paper variant='outlined' className='login__panel'>
 				<TextField
-					id='outlined-basic'
+					id='username'
 					label={
 						<div className='label-with-icon'>
 							<PersonIcon />
@@ -27,7 +27,7 @@ const Login = () => {
 					variant='outlined'
 				/>
 				<TextField
-					id='outlined-basic'
+					id='password'
 					label={
 						<div className='label-with-icon'>
 							<LockIcon />

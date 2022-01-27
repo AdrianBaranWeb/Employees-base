@@ -1,0 +1,38 @@
+{
+  "admins": [
+    {
+      "username": "adrian",
+      "password": "Admin!23"
+    }
+  ],
+  "departments": ["Development", "Marketing", "HR", "Designe"],
+  "positions": ["Frontend Developer", "Backend Developer", "Designer"],
+  "employees": [
+    {
+      "id": "E01",
+      "name": "Adrian",
+      "surname": "Baran",
+      "phone": "+48572713510",
+      "email": "adrianbaranweb@gmail.com",
+      "age": 20,
+      "departments": ["Development", "Marketing"],
+      "seniority": "1 Year",
+      "earnings": 2000,
+      "bonus": 0,
+      "satisfaction": 90
+    },
+    {
+      "id": "E02",
+      "name": "Jan",
+      "surname": "Kowalski",
+      "phone": "+48572713510",
+      "email": "adrianbaranweb@gmail.com",
+      "age": 20,
+      "departments": ["Designer"],
+      "seniority": "1 Year",
+      "earnings": 2000,
+      "bonus": 100,
+      "satisfaction": 80
+    }
+  ]
+}
