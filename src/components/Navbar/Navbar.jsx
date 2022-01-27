@@ -14,7 +14,7 @@ const Navbar = () => {
 					<Typography variant='h6' component='div' sx={{flexGrow: 1}}>
             <Link to='/'>EmployeeBase</Link>
 					</Typography>
-					<Button color='inherit'>Admin Panel</Button>
+					<Link to='/login'><Button color='inherit'>Admin Panel</Button></Link>
 				</Toolbar>
 			</AppBar>
 		</Box>
