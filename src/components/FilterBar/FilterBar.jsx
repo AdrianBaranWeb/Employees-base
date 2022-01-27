@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 
+import { connect } from 'react-redux';
+import { updateFilters } from '../../actions';
+
 import {
 	Card,
 	TextField,
@@ -12,12 +15,12 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-const FilterBar = () => {
+const FilterBar = ({updateFilters}) => {
 	const [departments, setDepartments] = useState(null);
 	const [positions, setPositions] = useState(null);
 	const [chosedDeparment, setChosedDepartment] = useState('');
 	const [chosedPosition, setChosedPosition] = useState('');
-	const [employeeData, setEmployeeData] = useState('');
+	const [employeeName, setEmployeeName] = useState('');
 
 	useEffect(() => {
 		fetch('http://localhost:8000/departments')
@@ -45,6 +48,11 @@ const FilterBar = () => {
 				{item}
 			</MenuItem>
 		));
+
+
+		const filter = () => {
+			updateFilters({departments: chosedDeparment, positions: chosedPosition, employeeName})
+		}
 
 	return (
 		<Card
@@ -91,10 +99,10 @@ const FilterBar = () => {
 					id='employee-data'
 					label='Employee'
 					variant='outlined'
-					value={employeeData}
-					onChange={(e) => setEmployeeData(e.target.value)}
+					value={employeeName}
+					onChange={(e) => setEmployeeName(e.target.value)}
 				/>
-				<Button variant='outlined'>
+				<Button variant='outlined' onClick={filter}>
 					<SearchIcon />
 				</Button>
 			</div>
@@ -102,4 +110,8 @@ const FilterBar = () => {
 	);
 };
 
-export default FilterBar;
+const mapStateToProps = (state) => {
+	return {data: state.data.filters};
+};
+
+export default connect(mapStateToProps, {updateFilters})(FilterBar);
