@@ -9,6 +9,7 @@ import {
 	Card,
 	CircularProgress,
 } from '@mui/material';
+import { connect } from 'react-redux';
 
 const EmployeeCard = ({
 	name,
@@ -23,12 +24,13 @@ const EmployeeCard = ({
 	bonus,
 	satisfaction,
 	isVisible,
+	isAdmin
 }) => {
 	return (
 		<Card sx={{minWidth: 275, mt: 5, display: isVisible ? 'block' : 'none'}}>
 			<Box>
 				<CardContent
-					sx={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 4}}>
+					sx={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 4}}>
 					{/* Employee Data */}
 					<Box>
 						<Box
@@ -84,7 +86,8 @@ const EmployeeCard = ({
 				</CardContent>
 			</Box>
 			{/* Card options */}
-			<CardActions>
+			{isAdmin && (
+				<CardActions>
 				<Button size='small' color='info'>
 					Edit
 				</Button>
@@ -95,8 +98,11 @@ const EmployeeCard = ({
 					Submit Month
 				</Button>
 			</CardActions>
+			)}
 		</Card>
 	);
 };
 
-export default EmployeeCard;
+const mapStateToProps = (state) => ({isAdmin: state.data.isAdmin})
+
+export default connect(mapStateToProps, {})(EmployeeCard);

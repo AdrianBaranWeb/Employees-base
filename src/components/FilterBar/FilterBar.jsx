@@ -97,7 +97,7 @@ const FilterBar = ({updateFilters}) => {
 				</FormControl>
 				<TextField
 					id='employee-data'
-					label='Employee'
+					label='Name'
 					variant='outlined'
 					value={employeeName}
 					onChange={(e) => setEmployeeName(e.target.value)}
