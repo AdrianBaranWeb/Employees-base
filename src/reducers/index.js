@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { UPDATE_EMPLOYEES, UPDATE_FILTERS, LOGIN_ADMIN } from "../actions";
+import { UPDATE_EMPLOYEES, UPDATE_FILTERS, LOGIN_ADMIN, LOG_OUT_ADMIN } from "../actions";
 
 export const defaultData = {
-  isAdmin: false,
+  isAdmin: true,
   employeeList: [],
   filters: {
     positions: '',
@@ -19,6 +19,8 @@ const employeeDataReducer = (data = defaultData, action) => {
       return {...data, filters: {...data.filters, ...action.payload}}
     case LOGIN_ADMIN:
       return {...data, isAdmin: true}
+    case LOG_OUT_ADMIN:
+      return {...data, isAdmin: false}
     default:
       return data;
   }

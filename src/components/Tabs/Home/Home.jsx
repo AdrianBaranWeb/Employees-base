@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {updateData} from '../../../actions';
 
 import FilterBar from '../../FilterBar/FilterBar';
 import EmployeeCard from '../../EmployeeCard/EmployeeCard';
 
 import {Container} from '@mui/material';
 
+import { updateData } from '../../../actions';
 
 const Home = ({data, updateData}) => {
 	useEffect(() => {

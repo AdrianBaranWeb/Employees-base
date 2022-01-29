@@ -11,7 +11,10 @@ import {
 } from '@mui/material';
 import { connect } from 'react-redux';
 
+import { useNavigate } from 'react-router-dom';
+
 const EmployeeCard = ({
+	id,
 	name,
 	surname,
 	age,
@@ -26,6 +29,8 @@ const EmployeeCard = ({
 	isVisible,
 	isAdmin
 }) => {
+	const navigate = useNavigate()
+
 	return (
 		<Card sx={{minWidth: 275, mt: 5, display: isVisible ? 'block' : 'none'}}>
 			<Box>
@@ -45,7 +50,7 @@ const EmployeeCard = ({
 							/>
 							<Typography variant='h5' component='div'>
 								{name} {surname}, {age}
-								<Typography color='text.secondary'>{positions}</Typography>
+								<Typography color='text.secondary'>{positions.map((item, index) => (index === 0 ? item : ' / ' + item))}</Typography>
 							</Typography>
 						</Box>
 						<Typography sx={{mb: 1, mt: 2}} color='text'>
@@ -88,10 +93,10 @@ const EmployeeCard = ({
 			{/* Card options */}
 			{isAdmin && (
 				<CardActions>
-				<Button size='small' color='info'>
+				<Button size='small' color='info' onClick={() => navigate(`/details/${id}`, {replace: true})}>
 					Edit
 				</Button>
-				<Button size='small' color='error'>
+				<Button size='small' color='error' onClick={() => navigate(`/employee-delete/${id}`, {replace: true})}>
 					Delete
 				</Button>
 				<Button variant='contained' style={{marginLeft: 'auto'}}>

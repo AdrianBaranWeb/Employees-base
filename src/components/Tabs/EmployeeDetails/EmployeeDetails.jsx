@@ -111,7 +111,7 @@ const EmployeeDetails = ({employees, updateData}) => {
 			}),
 		})
 			.then((res) => res.json())
-			.then((data) => alert('Aktualizacja danych zakończona sukcesem!'))
+			.then((data) => alert('Successfully changed data!'))
 			.catch((err) => alert(err.message));
 	};
 
